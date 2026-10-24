@@ -38,7 +38,7 @@ No installation or build process is required.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+   git clone https://github.com/troubleithink/HTML-GRABBER/index.html.git
    ```
 
 2. Navigate to the project directory:
